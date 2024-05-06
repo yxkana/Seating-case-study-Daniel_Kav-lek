@@ -1,4 +1,3 @@
-import { Seat } from "@/components/Seat.tsx";
 import {
   Avatar,
   AvatarFallback,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu.tsx";
 import "./App.css";
 import { useGetEvent } from "./hooks";
+import { SeatingCard } from "./components/SeatingCard";
 
 function App() {
   const isLoggedIn = false;
@@ -83,18 +83,7 @@ function App() {
         {/* inner content */}
         <div className="max-w-screen-lg m-auto p-4 flex items-start grow gap-3 w-full">
           {/* seating card */}
-          <div
-            className="bg-white rounded-md grow grid p-3 self-stretch shadow-sm"
-            style={{
-              gridTemplateColumns: "repeat(auto-fill, minmax(40px, 1fr))",
-              gridAutoRows: "40px",
-            }}
-          >
-            {/*	seating map */}
-            {Array.from({ length: 100 }, (_, i) => (
-              <Seat key={i} />
-            ))}
-          </div>
+          <SeatingCard seats={data.seatings} />
 
           {/* event info */}
           <aside className="w-full max-w-sm bg-white rounded-md shadow-sm p-3 flex flex-col gap-2">

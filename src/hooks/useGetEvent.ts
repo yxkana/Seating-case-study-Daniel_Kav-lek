@@ -17,7 +17,7 @@ export interface seatsData {
   ticketTypes: [
     {
       id: string;
-      name: string;
+      name: "VIP ticket" | "Regular ticket";
       price: number;
     }
   ];
@@ -28,7 +28,7 @@ export interface seatsData {
         {
           seatId: string;
           place: number;
-          ticketTypeId: number;
+          ticketTypeId: string;
         }
       ];
     }
@@ -52,5 +52,6 @@ export const useGetEvent = () => {
 
       return data;
     },
+    refetchOnWindowFocus: false,
   });
 };

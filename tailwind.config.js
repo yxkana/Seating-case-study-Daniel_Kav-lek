@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: [
-    './src/components/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
+  content: ["./src/components/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -15,6 +12,14 @@ module.exports = {
       },
     },
     extend: {
+      colors:{
+        regularTicket:{
+          100: "#DC827A"
+        },
+        vipTicket:{
+          100: "#CEB247"
+        }
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -31,5 +36,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
+  daisyui: {
+    themes: ["retro"],
+  },
+};
