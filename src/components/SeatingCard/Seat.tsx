@@ -5,7 +5,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover.tsx";
 import { seatsData } from "@/hooks";
-import { cn } from "@/lib/utils.ts";
 import React from "react";
 import { useFormatPrice } from "@/hooks";
 import { CoinsIcon, TicketIcon } from "../icons";

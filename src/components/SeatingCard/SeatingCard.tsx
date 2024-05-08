@@ -45,7 +45,7 @@ export const SeatingCard = ({ seats }: SeatingCardProps) => {
           </div>
         );
       })}
-      <div className="flex gap-2">
+      <div className="flex gap-2 py-2">
         {seats.ticketTypes.map((type) => {
           return <TicketType type={type.name} />;
         })}

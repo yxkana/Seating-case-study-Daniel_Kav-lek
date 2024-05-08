@@ -16,6 +16,7 @@ import {
 import "./App.css";
 import { useGetEvent } from "./hooks";
 import { SeatingCard } from "./components/SeatingCard";
+import { EventInfo } from "./components/EventInfo";
 
 function App() {
   const isLoggedIn = false;
@@ -81,30 +82,15 @@ function App() {
       {/* main body (wrapper) */}
       <main className="grow flex flex-col justify-center">
         {/* inner content */}
-        <div className="max-w-screen-lg m-auto p-4 flex items-start grow gap-3 w-full">
+        <div className="max-w-screen-xl m-auto flex items-center justify-evenly grow gap-3 w-full">
           {/* seating card */}
+
           <SeatingCard seats={data.seatings} />
 
           {/* event info */}
-          <aside className="w-full max-w-sm bg-white rounded-md shadow-sm p-3 flex flex-col gap-2">
-            {/* event header image placeholder */}
-            <div className="bg-zinc-100 rounded-md h-32" />
-            {/* event name */}
-            <h1 className="text-xl text-zinc-900 font-semibold">
-              [event-name]
-            </h1>
-            {/* event description */}
-            <p className="text-sm text-zinc-500">
-              [event-description]: Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Aliquam aliquid asperiores beatae deserunt dicta
-              dolorem eius eos fuga laborum nisi officia pariatur quidem
-              repellendus, reprehenderit sapiente, sed tenetur vel voluptatibus?
-            </p>
-            {/* add to calendar button */}
-            <Button variant="secondary" disabled>
-              Add to calendar
-            </Button>
-          </aside>
+          <div className="max-w-md">
+            <EventInfo event={data.event} />
+          </div>
         </div>
       </main>
 
