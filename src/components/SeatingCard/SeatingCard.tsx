@@ -1,16 +1,17 @@
-import { seatsData } from "@/hooks";
+import { eventData, seatsData } from "@/hooks";
 import { Seat } from "./Seat";
 import classnames from "classnames";
 
 interface SeatingCardProps {
+  event: eventData;
   seats: seatsData;
 }
 
 interface TicketTypeInfoProps {
-  type: "Regular ticket" | "VIP ticket";
+  type?: "Regular ticket" | "VIP ticket";
 }
 
-export const SeatingCard = ({ seats }: SeatingCardProps) => {
+export const SeatingCard = ({ seats, event }: SeatingCardProps) => {
   const TicketType = ({ type }: TicketTypeInfoProps) => {
     return (
       <div className="flex gap-2 items-center">
@@ -39,6 +40,7 @@ export const SeatingCard = ({ seats }: SeatingCardProps) => {
                   key={seat.seatId}
                   ticketType={seats.ticketTypes}
                   seat={seat}
+                  event={event}
                 />
               );
             })}
@@ -49,6 +51,10 @@ export const SeatingCard = ({ seats }: SeatingCardProps) => {
         {seats.ticketTypes.map((type) => {
           return <TicketType type={type.name} />;
         })}
+        <div className="flex items-center gap-2">
+          <div className="size-2 rounded-full bg-info"></div>
+          {"In Cart"}
+        </div>
       </div>
     </div>
   );

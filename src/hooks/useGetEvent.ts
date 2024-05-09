@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { api } from "@/lib/constants";
+import { UUID } from "crypto";
 
 export interface eventData {
-  eventId: string;
+  eventId: UUID;
   namePub: string;
   description: string;
   currencyIso: string;
@@ -16,7 +17,7 @@ export interface eventData {
 export interface seatsData {
   ticketTypes: [
     {
-      id: string;
+      id: UUID;
       name: "VIP ticket" | "Regular ticket";
       price: number;
     }
@@ -26,9 +27,9 @@ export interface seatsData {
       seatRow: number;
       seats: [
         {
-          seatId: string;
+          seatId: UUID;
           place: number;
-          ticketTypeId: string;
+          ticketTypeId: UUID;
         }
       ];
     }

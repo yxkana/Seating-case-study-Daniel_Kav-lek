@@ -1,16 +1,45 @@
+
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  @apply bg-zinc-900 text-zinc-50;
-
+  --bg-color: theme(colors.base-100)
+  --primary: theme(colors.base-300); 
+  --secondary: theme(colors.base-content);
+  --text-color: theme(colors.neutral-content) 
+  
+  color: var(var(--text-color));
+  background-color: var(--bg-color);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
+
+ul::-webkit-scrollbar {
+  width: 0.5em;
+  height: 1em;
+}
+
+ul::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 100vw;
+  margin-block: 0.5em;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 100vw;
+}
+
+ul::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+  
+}
+
 
 body {
   margin: 0;
