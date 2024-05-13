@@ -6,8 +6,10 @@ import { useLogin } from "@/hooks";
 import useAuthStore from "@/stores/AuthStore";
 
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
+  email: z.string().email().min(1, { message: "Email is requierd" }),
+  password: z
+    .string()
+    .min(8, { message: "Password needs to have at least 8 charakters" }),
 });
 
 type FormFields = z.infer<typeof schema>;
@@ -28,7 +30,6 @@ export const LoginForm = () => {
     const { email, password } = credentials;
     try {
       const response = await login.mutateAsync({ email, password });
-
       updateUser({
         email: response.user.email,
         firstName: response.user.firstName,
@@ -36,7 +37,7 @@ export const LoginForm = () => {
       });
     } catch (error) {
       setError("root", {
-        message: "test error",
+        message: "Wrong email or password",
       });
     }
   };
@@ -54,6 +55,7 @@ export const LoginForm = () => {
             {...register("email")}
             type="text"
             placeholder="Email"
+            required
           />
         </label>
         {errors.email && (
@@ -66,13 +68,19 @@ export const LoginForm = () => {
             {...register("password")}
             type="password"
             placeholder="Password"
+            required
           />
         </label>
         {errors.password && (
           <div className="text-error">{errors.password.message}</div>
         )}
       </div>
-      <button className="btn btn-primary" disabled={isSubmitting} type="submit">
+      <button
+        className="btn btn-primary"
+        disabled={isSubmitting}
+        type="submit"
+        role="button"
+      >
         {"Login"}
       </button>
       {errors.root && <div className="text-error">{errors.root.message}</div>}
