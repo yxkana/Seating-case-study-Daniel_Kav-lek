@@ -5,6 +5,7 @@ import { CoinsIcon, TicketIcon } from "../icons";
 import classNames from "classnames";
 import useTicketCartStore, { CartItem } from "@/stores/TicketCartStore";
 import { closePopup } from "@/lib/utils";
+import { MapPin } from "lucide-react";
 
 type SeatData = Pick<seatsData, "seatRows">;
 type TicketType = Pick<seatsData, "ticketTypes">;
@@ -14,6 +15,7 @@ type SeatOnly = SeatData["seatRows"][number]["seats"][number];
 interface SeatProps extends React.HTMLAttributes<HTMLElement> {
   event: eventData;
   seat: SeatOnly;
+  rowNumber: number;
   ticketType: TicketOnly[];
 }
 export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
@@ -87,6 +89,10 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
             <div className="flex gap-2 text-sm font-medium">
               <CoinsIcon />
               <p>{priceFormat.format(ticket.price)}</p>
+            </div>
+            <div className="flex gap-2 text-sm font-medium">
+              <MapPin />
+              <p>{`${props.rowNumber} - ${props.seat.place}`}</p>
             </div>
           </div>
 

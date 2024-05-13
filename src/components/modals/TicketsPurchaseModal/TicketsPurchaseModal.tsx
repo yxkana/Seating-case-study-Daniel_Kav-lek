@@ -29,7 +29,7 @@ export const TicketsPurchaseModal = ({
         <div className="flex w-full h-96">
           <div className="flex-1">
             {currentStep === 0 && <OrderSummary changeStep={setCurrentStep} />}
-            {currentStep === 1 && <LoginOptions changeStep={setCurrentStep} />}
+            {currentStep === 1 && <LoginOptions />}
           </div>
         </div>
       </DialogContent>
