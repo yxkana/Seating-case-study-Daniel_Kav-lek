@@ -7,12 +7,15 @@ import { OrderResultInfo } from "./OrderResultInfo";
 import {
   PostCartOrderResponseData,
   PostCartTicketData,
+  useIsMobile,
   usePostCartOrder,
 } from "@/hooks";
 import useAuthStore from "@/stores/AuthStore";
 import useTicketCartStore from "@/stores/TicketCartStore";
+import classNames from "classnames";
 
 export const LoginOptions = () => {
+  const isMobile = useIsMobile();
   const user = useAuthStore((state) => state.user);
   const { cartTicketsItems, clearCart } = useTicketCartStore((state) => state);
   const postOrder = usePostCartOrder();
@@ -63,14 +66,22 @@ export const LoginOptions = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex w-full justify-evenly">
+              <div
+                className={classNames("flex w-full  justify-evenly", {
+                  "flex-col": isMobile,
+                })}
+              >
                 <div className="flex flex-col gap-10">
                   <h1 className="text-2xl">Without Login</h1>
                   <WithoutLoginTicketPurchaseForm
                     setResultData={setSuccessOrderData}
                   />
                 </div>
-                <div className="divider divider-horizontal"></div>
+                <div
+                  className={classNames("divider divider-horizontal", {
+                    "divider-vertical": isMobile,
+                  })}
+                ></div>
                 <div className="flex flex-col gap-10">
                   <h1 className="text-2xl">Login</h1>
                   <LoginTicketPurchaseForm

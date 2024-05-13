@@ -1,4 +1,4 @@
-import { eventData, seatsData } from "@/hooks";
+import { eventData, seatsData, useIsMobile } from "@/hooks";
 import { Seat } from "./Seat";
 import classnames from "classnames";
 
@@ -12,6 +12,8 @@ interface TicketTypeInfoProps {
 }
 
 export const SeatingCard = ({ seats, event }: SeatingCardProps) => {
+  const isMobile = useIsMobile();
+
   const TicketLegend = ({ type }: TicketTypeInfoProps) => {
     return (
       <div className="flex gap-2 items-center">
@@ -51,6 +53,7 @@ export const SeatingCard = ({ seats, event }: SeatingCardProps) => {
             <p>{row.seatRow}</p>
             <div className="flex gap-2">
               {consecutiveSeatOrder.map((seat) => {
+                /* Seat Row */
                 return (
                   <Seat
                     key={seat.seatId}

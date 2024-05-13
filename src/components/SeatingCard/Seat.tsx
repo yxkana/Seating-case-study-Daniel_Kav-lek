@@ -1,4 +1,4 @@
-import { eventData, seatsData } from "@/hooks";
+import { eventData, seatsData, useIsMobile } from "@/hooks";
 import React from "react";
 import { useFormatPrice } from "@/hooks";
 import { CoinsIcon, TicketIcon } from "../icons";
@@ -21,6 +21,7 @@ interface SeatProps extends React.HTMLAttributes<HTMLElement> {
 export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
   (props, ref) => {
     const priceFormat = useFormatPrice();
+    const isMobile = useIsMobile();
     const { addTicket, cartTicketsItems, removeTicket } = useTicketCartStore(
       (state) => state
     );
@@ -55,13 +56,26 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
     };
 
     return (
-      <div className="dropdown">
+      <div
+        className={classNames(
+          "dropdown",
+          {
+            "dropdown-left": props.seat.place > 4 && isMobile,
+          },
+          { "dropdown-right": props.seat.place < 4 && isMobile }
+        )}
+      >
         {/* Dropdown seat button */}
         <div
           tabIndex={0}
           role="button"
           className={classNames(
-            "kbd my-1 hover:cursor-pointer text-white",
+            "my-1 hover:cursor-pointer text-white",
+            {
+              "size-8 rounded-xl shadow-md flex flex-col items-center justify-center":
+                !isMobile,
+            },
+            { "size-4 rounded-full my-0": isMobile },
             { "bg-info": isInCart() === true },
             {
               "bg-vipTicket-100":
@@ -75,11 +89,17 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
           ref={ref}
         >
           {/* Seat number */}
-          <span className="text-xs font-medium">{props.seat.place}</span>
+          <span className="text-xs font-medium">
+            {!isMobile && props.seat.place}
+          </span>
         </div>
+        {/* Seat dropdown */}
         <div
           tabIndex={0}
-          className="dropdown-content z-[1] card card-compact w-52 p-2 shadow bg-neutral"
+          className={classNames(
+            "dropdown-content z-[1] card card-compact w-52 p-2 shadow bg-neutral",
+            { "w-44": isMobile }
+          )}
         >
           <div className="flex flex-col gap-2 pt-2 pb-4">
             <div className="flex gap-2 font-semibold">

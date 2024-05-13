@@ -1,4 +1,4 @@
-import { eventData } from "@/hooks";
+import { eventData, useIsMobile } from "@/hooks";
 import { BackIcon, DateIcon, InfoIcon, PlaceIcon } from "../icons";
 import { formatDate } from "@/lib/utils";
 import { useState } from "react";
@@ -10,6 +10,7 @@ interface EvenetInfoProps {
 /* TODO adding transition animation between description and info components */
 
 export const EventInfo = ({ event }: EvenetInfoProps) => {
+  const isMobile = useIsMobile();
   const [isInfo, setIsInfo] = useState(false);
 
   return !isInfo ? (
@@ -56,7 +57,7 @@ export const EventInfo = ({ event }: EvenetInfoProps) => {
     </>
   ) : (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 p-3">
         <div
           id="button-div"
           onClick={() => setIsInfo(false)}
@@ -65,7 +66,7 @@ export const EventInfo = ({ event }: EvenetInfoProps) => {
           <BackIcon className="text-white" />
           Back
         </div>
-        <div className="text-base/7">{event.description}</div>
+        <div className="text-base/7 text-center p-3">{event.description}</div>
       </div>
     </>
   );

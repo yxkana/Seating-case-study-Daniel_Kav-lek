@@ -1,11 +1,13 @@
 import "./App.css";
-import { useGetEvent } from "./hooks";
+import { useGetEvent, useIsMobile } from "./hooks";
 import { SeatingCard } from "./components/SeatingCard";
 import { EventInfo } from "./components/EventInfo";
 import { Topbar } from "./components/Topbar";
+import classNames from "classnames";
 
 function App() {
   const { data } = useGetEvent();
+  const isMobile = useIsMobile();
 
   if (!data) {
     return null;
@@ -19,13 +21,18 @@ function App() {
       {/* main body (wrapper) */}
       <main className="grow flex flex-col justify-center">
         {/* inner content */}
-        <div className="max-w-screen-xl m-auto flex items-center justify-evenly grow gap-3 w-full">
+        <div
+          className={classNames(
+            "max-w-screen-xl m-auto flex items-center justify-evenly grow gap-3 w-full",
+            { "w-screen flex-col": isMobile }
+          )}
+        >
           {/* seating card */}
 
           <SeatingCard seats={data.seatings} event={data.event} />
 
           {/* event info */}
-          <div className="max-w-md">
+          <div className={classNames(classNames("max-w-md",{"w-screen":isMobile}))}>
             <EventInfo event={data.event} />
           </div>
         </div>

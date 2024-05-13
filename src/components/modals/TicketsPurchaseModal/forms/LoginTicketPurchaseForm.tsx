@@ -102,7 +102,7 @@ export const LoginTicketPurchaseForm = ({
           <div className="text-error">{errors.password.message}</div>
         )}
       </div>
-      <button className="btn btn-primary" disabled={isSubmitting} type="submit">
+      <button className="btn btn-primary mt-5" disabled={isSubmitting} type="submit">
         {"Login"}
       </button>
       {errors.root && <div className="text-error">{errors.root.message}</div>}
