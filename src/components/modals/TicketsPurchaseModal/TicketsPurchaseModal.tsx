@@ -28,8 +28,8 @@ export const TicketsPurchaseModal = ({
         Buy tickets
       </DialogTrigger>
       <DialogContent
-        className={classNames("bg-base-300 max-w-screen-md  border-none", {
-          "w-screen h-screen": isMobile,
+        className={classNames("max-w-screen-md border-none  bg-base-300", {
+          "h-screen w-screen": isMobile,
         })}
       >
         <DialogHeader className=""></DialogHeader>
@@ -37,7 +37,7 @@ export const TicketsPurchaseModal = ({
           className={classNames(
             "flex w-full ",
             { "h-[90vh]": isMobile },
-            { "h-96": !isMobile }
+            { "h-96": !isMobile },
           )}
         >
           <div className="flex-1">

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useIsMobile } from "@/hooks";
 export const Topbar = () => {
   const isMobile = useIsMobile();
-  
+
   return (
     <div className={classNames("px-10 pt-2", { "px-2": isMobile })}>
       <div className="navbar">

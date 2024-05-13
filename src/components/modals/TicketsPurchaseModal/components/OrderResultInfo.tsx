@@ -14,7 +14,7 @@ export const OrderResultInfo = (data: OrderResultInfo) => {
   /* Result is mainly for success. Not enough information for more states */
 
   return (
-    <div className="flex flex-col items-center justify-between h-full">
+    <div className="flex h-full flex-col items-center justify-between">
       <h1 className="text-2xl">{data.data.message}</h1>
       <div className="flex flex-col items-start gap-2">
         <span>{"Email: " + data.data.user.email}</span>

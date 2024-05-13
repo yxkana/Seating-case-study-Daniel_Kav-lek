@@ -1,4 +1,4 @@
-import { eventData, seatsData, useIsMobile } from "@/hooks";
+import { eventData, seatsData } from "@/hooks";
 import { Seat } from "./Seat";
 import classnames from "classnames";
 
@@ -12,18 +12,16 @@ interface TicketTypeInfoProps {
 }
 
 export const SeatingCard = ({ seats, event }: SeatingCardProps) => {
-  const isMobile = useIsMobile();
-
   const TicketLegend = ({ type }: TicketTypeInfoProps) => {
     return (
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         <div
           className={classnames(
             "size-2 rounded-full",
             {
               "bg-vipTicket-100": type === "VIP ticket",
             },
-            { "bg-regularTicket-100": type === "Regular ticket" }
+            { "bg-regularTicket-100": type === "Regular ticket" },
           )}
         ></div>
         <div className="text-sm">{type}</div>
@@ -48,7 +46,7 @@ export const SeatingCard = ({ seats, event }: SeatingCardProps) => {
         return (
           <div
             key={row.seatRow}
-            className="flex gap-5 justify-between items-center"
+            className="flex items-center justify-between gap-5"
           >
             <p>{row.seatRow}</p>
             <div className="flex gap-2">

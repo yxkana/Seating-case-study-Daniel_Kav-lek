@@ -9,14 +9,14 @@ export const CartDropdown = () => {
   const cartTicketQuantity = cartTicketsItems.length;
   const isCartEmpty = cartTicketQuantity === 0;
   const formatPrice = useFormatPrice().format;
-  
+
   return (
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+      <div tabIndex={0} role="button" className="btn btn-circle btn-ghost">
         {/* Cart Icon with tciket counter */}
         <div className="indicator">
           <CartIcon />
-          <span className="badge badge-sm bg-primary indicator-item shadow-md">
+          <span className="badge indicator-item badge-sm bg-primary shadow-md">
             {cartTicketQuantity}
           </span>
         </div>
@@ -24,27 +24,30 @@ export const CartDropdown = () => {
       {/* Dropdown for cart Icon */}
       <div
         tabIndex={0}
-        className="mt-3 z-[1] card card-compact dropdown-content w-72 bg-base-200 shadow"
+        className="card dropdown-content card-compact z-[1] mt-3 w-72 bg-base-200 shadow"
       >
         <div className="card-body">
-          <span className="font-bold text-lg flex gap-2">
+          <span className="flex gap-2 text-lg font-bold">
             {cartTicketQuantity + " Items"}
           </span>
           {/* Ticket Cart List */}
-          <ul className="flex flex-col max-h-72 overflow-auto gap-2">
+          <ul className="flex max-h-72 flex-col gap-2 overflow-auto">
             {!isCartEmpty ? (
               <>
                 {cartTicketsItems.map((ticket) => {
                   return (
-                    <li className=" flex flex-col shadow-md shadow-base-200 gap-2 justify-between items-center bg-neutral p-2 rounded-md">
+                    <li
+                      key={ticket.tickets.seatId}
+                      className=" flex flex-col items-center justify-between gap-2 rounded-md bg-neutral p-2 shadow-md shadow-base-200"
+                    >
                       <h2>{ticket.eventName}</h2>
-                      <div className="flex justify-between items-center w-full">
+                      <div className="flex w-full items-center justify-between">
                         <div>
-                          <div className="flex gap-1 items-center font-semibold">
+                          <div className="flex items-center gap-1 font-semibold">
                             <TicketIcon width={16} />
                             {ticket.tickets.ticketType}
                           </div>
-                          <div className="flex gap-1 items-center">
+                          <div className="flex items-center gap-1">
                             <CoinsIcon width={16} />
                             {formatPrice(ticket.tickets.price)}
                           </div>
@@ -54,7 +57,7 @@ export const CartDropdown = () => {
                         >
                           <TrashIcon
                             height={22}
-                            className="hover:cursor-pointer hover:text-error hover:scale-110"
+                            className="hover:scale-110 hover:cursor-pointer hover:text-error"
                           />
                         </div>
                       </div>
@@ -63,7 +66,7 @@ export const CartDropdown = () => {
                 })}
               </>
             ) : (
-              <div className="flex justify-center h-24 flex-col items-center">
+              <div className="flex h-24 flex-col items-center justify-center">
                 <h1>{"Empty Cart!"}</h1>
               </div>
             )}

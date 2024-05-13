@@ -73,7 +73,7 @@ export const LoginTicketPurchaseForm = ({
 
   return (
     <form
-      className="flex flex-col h-full justify-between"
+      className="flex h-full flex-col justify-between"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-5">
@@ -102,7 +102,11 @@ export const LoginTicketPurchaseForm = ({
           <div className="text-error">{errors.password.message}</div>
         )}
       </div>
-      <button className="btn btn-primary mt-5" disabled={isSubmitting} type="submit">
+      <button
+        className="btn btn-primary mt-5"
+        disabled={isSubmitting}
+        type="submit"
+      >
         {"Login"}
       </button>
       {errors.root && <div className="text-error">{errors.root.message}</div>}

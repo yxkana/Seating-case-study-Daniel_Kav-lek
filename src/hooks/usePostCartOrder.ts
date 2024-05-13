@@ -1,5 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import axios, { AxiosResponse } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { api } from "@/lib/constants";
 import { UUID } from "crypto";
 import { UserData } from "@/stores/AuthStore";

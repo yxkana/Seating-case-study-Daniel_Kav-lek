@@ -23,14 +23,14 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
     const priceFormat = useFormatPrice();
     const isMobile = useIsMobile();
     const { addTicket, cartTicketsItems, removeTicket } = useTicketCartStore(
-      (state) => state
+      (state) => state,
     );
 
     /* Checking if seat is in shopping cart */
     const isInCart = (): boolean => {
       return (
         cartTicketsItems.find(
-          (ticket) => ticket.tickets.seatId === props.seat.seatId
+          (ticket) => ticket.tickets.seatId === props.seat.seatId,
         ) !== undefined
       );
     };
@@ -38,7 +38,7 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
     /* Show correct type of ticket */
     const showTicketType = () => {
       return props.ticketType.filter(
-        (item) => item.id !== props.seat.ticketTypeId
+        (item) => item.id !== props.seat.ticketTypeId,
       )[0];
     };
     const ticket: TicketOnly = showTicketType();
@@ -62,7 +62,7 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
           {
             "dropdown-left": props.seat.place > 4 && isMobile,
           },
-          { "dropdown-right": props.seat.place < 4 && isMobile }
+          { "dropdown-right": props.seat.place < 4 && isMobile },
         )}
       >
         {/* Dropdown seat button */}
@@ -70,12 +70,12 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
           tabIndex={0}
           role="button"
           className={classNames(
-            "my-1 hover:cursor-pointer text-white",
+            "my-1 text-white hover:cursor-pointer",
             {
-              "size-8 rounded-xl shadow-md flex flex-col items-center justify-center":
+              "flex size-8 flex-col items-center justify-center rounded-xl shadow-md":
                 !isMobile,
             },
-            { "size-4 rounded-full my-0": isMobile },
+            { "my-0 size-4 rounded-full": isMobile },
             { "bg-info": isInCart() === true },
             {
               "bg-vipTicket-100":
@@ -84,7 +84,7 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
             {
               "bg-regularTicket-100":
                 ticket.name === "Regular ticket" && isInCart() !== true,
-            }
+            },
           )}
           ref={ref}
         >
@@ -97,11 +97,11 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
         <div
           tabIndex={0}
           className={classNames(
-            "dropdown-content z-[1] card card-compact w-52 p-2 shadow bg-neutral",
-            { "w-44": isMobile }
+            "card dropdown-content card-compact z-[1] w-52 bg-neutral p-2 shadow",
+            { "w-44": isMobile },
           )}
         >
-          <div className="flex flex-col gap-2 pt-2 pb-4">
+          <div className="flex flex-col gap-2 pb-4 pt-2">
             <div className="flex gap-2 font-semibold">
               <TicketIcon />
               <p>{ticket.name}</p>
@@ -112,7 +112,7 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
             </div>
             <div className="flex gap-2 text-sm font-medium">
               <MapPin />
-              <p>{`${props.rowNumber} - ${props.seat.place}`}</p>
+              <p>{`${props.rowNumber}-${props.seat.place}`}</p>
             </div>
           </div>
 
@@ -120,7 +120,7 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
             {/* Remove ticket from cart */}
             {isInCart() ? (
               <button
-                className="btn btn-sm btn-error"
+                className="btn btn-error btn-sm"
                 onClick={() => {
                   closePopup();
                   removeTicket(cartSeat.tickets.seatId);
@@ -135,7 +135,7 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
                   closePopup();
                   return addTicket(cartSeat);
                 }}
-                className="btn btn-sm btn-success"
+                className="btn btn-success btn-sm"
               >
                 Add to cart
               </button>
@@ -144,5 +144,5 @@ export const Seat = React.forwardRef<HTMLDivElement, SeatProps>(
         </div>
       </div>
     );
-  }
+  },
 );

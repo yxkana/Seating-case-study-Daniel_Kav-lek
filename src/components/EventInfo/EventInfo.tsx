@@ -1,4 +1,4 @@
-import { eventData, useIsMobile } from "@/hooks";
+import { eventData } from "@/hooks";
 import { BackIcon, DateIcon, InfoIcon, PlaceIcon } from "../icons";
 import { formatDate } from "@/lib/utils";
 import { useState } from "react";
@@ -8,9 +8,9 @@ interface EvenetInfoProps {
 }
 
 /* TODO adding transition animation between description and info components */
+/* TODO adding calendar component */
 
 export const EventInfo = ({ event }: EvenetInfoProps) => {
-  const isMobile = useIsMobile();
   const [isInfo, setIsInfo] = useState(false);
 
   return !isInfo ? (
@@ -23,7 +23,7 @@ export const EventInfo = ({ event }: EvenetInfoProps) => {
         <div className="p-5">
           <div className="flex flex-col gap-4 text-sm">
             <h1 className="text-2xl font-bold">{event.namePub}</h1>
-            <div className="flex gap-2 items-center">
+            <div className="flex items-center gap-2">
               <div>
                 <PlaceIcon color="white" />
               </div>
@@ -45,7 +45,7 @@ export const EventInfo = ({ event }: EvenetInfoProps) => {
                   onClick={() => {
                     setIsInfo(true);
                   }}
-                  className="hover:cursor-pointer underline text-base"
+                  className="text-base underline hover:cursor-pointer"
                 >
                   Show more about event
                 </p>
@@ -61,12 +61,12 @@ export const EventInfo = ({ event }: EvenetInfoProps) => {
         <div
           id="button-div"
           onClick={() => setIsInfo(false)}
-          className="flex gap-2 hover:cursor-pointer font-bold text-lg"
+          className="flex gap-2 text-lg font-bold hover:cursor-pointer"
         >
           <BackIcon className="text-white" />
           Back
         </div>
-        <div className="text-base/7 text-center p-3">{event.description}</div>
+        <div className="p-3 text-center text-base/7">{event.description}</div>
       </div>
     </>
   );

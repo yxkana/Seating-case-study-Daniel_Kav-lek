@@ -53,7 +53,7 @@ export const LoginOptions = () => {
         {successOrderData === null ? (
           <>
             {user ? (
-              <div className="flex flex-col items-center h-full justify-between">
+              <div className="flex h-full flex-col items-center justify-between">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-2xl">{`Login as ${user.firstName} ${user.lastName}`}</h1>
                   <span>{`Email: ${user.email}`}</span>

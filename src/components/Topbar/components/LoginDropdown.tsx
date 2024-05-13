@@ -12,13 +12,13 @@ export const LoginDropdown = () => {
             <button
               tabIndex={0}
               role="button"
-              className="btn btn-base300 btn-circle avatar"
+              className="btn-base300 avatar btn btn-circle"
             >
               <UserIcon />
             </button>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
             >
               <li>
                 <a
@@ -40,13 +40,13 @@ export const LoginDropdown = () => {
             <button
               tabIndex={0}
               role="button"
-              className="btn btn-base-300 btn-square px-10"
+              className="btn-base-300 btn btn-square px-10"
             >
               {"Login"}
             </button>
             <ul
               tabIndex={0}
-              className="menu menu-lg  dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 rounded-box"
+              className="menu dropdown-content  menu-lg z-[1] mt-3 rounded-box bg-base-100 p-4 shadow"
             >
               <LoginForm />
             </ul>

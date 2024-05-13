@@ -26,6 +26,8 @@ interface TicketCartState {
   clearCart: () => void;
 }
 
+/* State logic for Ticket store */
+
 const useTicketCartStore = create<TicketCartState>()((set, get) => ({
   cartTicketsItems: [],
   isCheckoutActive: false,
@@ -41,7 +43,7 @@ const useTicketCartStore = create<TicketCartState>()((set, get) => ({
   removeTicket: (id: UUID) =>
     set((state) => ({
       cartTicketsItems: state.cartTicketsItems.filter(
-        (ticket) => ticket.tickets.seatId !== id
+        (ticket) => ticket.tickets.seatId !== id,
       ),
     })),
   getCartTotalPrice: () => {
@@ -56,7 +58,7 @@ const useTicketCartStore = create<TicketCartState>()((set, get) => ({
   },
   clearCart: () =>
     set(() => ({
-      cartTicketsItems: []
+      cartTicketsItems: [],
     })),
 }));
 

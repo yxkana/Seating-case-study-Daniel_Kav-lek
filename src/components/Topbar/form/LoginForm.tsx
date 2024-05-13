@@ -34,7 +34,6 @@ export const LoginForm = () => {
         firstName: response.user.firstName,
         lastName: response.user.lastName,
       });
-
     } catch (error) {
       setError("root", {
         message: "test error",
@@ -44,7 +43,7 @@ export const LoginForm = () => {
 
   return (
     <form
-      className="flex flex-col h-full justify-between gap-5"
+      className="flex h-full flex-col justify-between gap-5"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-5">

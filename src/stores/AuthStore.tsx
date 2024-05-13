@@ -1,6 +1,6 @@
-import { UUID } from "crypto";
-import { get } from "http";
 import { create } from "zustand";
+
+/* Basic auth store for login state */
 
 export interface UserData {
   email: string;

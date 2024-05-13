@@ -20,7 +20,7 @@ export interface seatsData {
       id: UUID;
       name: "VIP ticket" | "Regular ticket";
       price: number;
-    }
+    },
   ];
   seatRows: [
     {
@@ -30,11 +30,13 @@ export interface seatsData {
           seatId: UUID;
           place: number;
           ticketTypeId: UUID;
-        }
+        },
       ];
-    }
+    },
   ];
 }
+
+/* hook for event API call */
 
 export const useGetEvent = () => {
   return useQuery({
@@ -42,9 +44,8 @@ export const useGetEvent = () => {
     queryFn: async () => {
       const data = await axios.get(`${api}/event`).then(async (results) => {
         const { data } = await axios.get(
-          `${api}/event-tickets?eventId=${results.data.eventId}`
+          `${api}/event-tickets?eventId=${results.data.eventId}`,
         );
-
         return {
           event: results.data as eventData,
           seatings: data as seatsData,
