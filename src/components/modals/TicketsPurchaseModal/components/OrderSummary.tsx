@@ -25,10 +25,10 @@ export const OrderSummary = ({ changeStep }: StepperProps) => {
     >
       <div className="flex flex-1 flex-col gap-4">
         <h1>Order summary</h1>
-        <div className="h-1/2 rounded-md bg-base-200 p-4">
+        <ul className="h-1/2 rounded-md bg-base-200 p-4 overflow-auto">
           {cartTicketsItems.map((ticket) => {
             return (
-              <div
+              <li
                 key={ticket.tickets.seatId}
                 className="flex items-center gap-4"
               >
@@ -39,10 +39,10 @@ export const OrderSummary = ({ changeStep }: StepperProps) => {
                     {priceFormat(ticket.tickets.price)}
                   </p>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
         <span>{"Total Amount " + priceFormat(getCartTotalPrice())}</span>
       </div>
       <button
