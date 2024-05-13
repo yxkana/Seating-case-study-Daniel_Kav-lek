@@ -5,8 +5,6 @@ import { EventInfo } from "./components/EventInfo";
 import { Topbar } from "./components/Topbar";
 
 function App() {
-  const isLoggedIn = true;
-
   const { data } = useGetEvent();
 
   if (!data) {
